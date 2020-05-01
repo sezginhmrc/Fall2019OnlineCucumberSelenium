@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/activities",
         dryRun = false,
         strict = false,
+       // tags = "",
         plugin = {
                 "html:target/default-report",
                 "json:target/cucumber10.json" +

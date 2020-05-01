@@ -12,6 +12,7 @@
     <!-- all of above are auto-generated  We configure our pom.xml file after this line  -->
 
 
+    <!-- to compile source code of project  -->
     <properties>
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
@@ -20,6 +21,9 @@
 
 
     <profiles>
+
+
+        <!-- to compile source code of project  -->
         <profile>
             <id>Smoke</id>
             <build>
@@ -42,7 +46,9 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M4</version>
 
-
+                        <!--  here we specify tests attributes (parallel, threadCount, etc)
+                       so when we execute to run project  it will be run according this attributes
+                               -->
                         <configuration>
                             <parallel>methods</parallel> <!--  methods, classes   -->
                             <useUnlimitedThreads>true</useUnlimitedThreads>  <!-- to be able to allow multiple threads in run    -->
@@ -51,6 +57,7 @@
                             <perCoreThreadCount>false</perCoreThreadCount>
                             <forkCount>2C</forkCount>
 
+                            <!-- list all runner class here-->
                             <includes>
                                 <include>**/*SmokeTestRunner.java</include>
                             </includes>
@@ -95,7 +102,7 @@
                             <forkCount>2C</forkCount>
 
                             <includes>
-                                <include>**/RegressionRunner.java</include>
+                                <include>**/*CucumberRunner.java</include>
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
@@ -106,7 +113,13 @@
             </build>
         </profile>
 
+
+
     </profiles>
+
+
+
+
 
     <build>
 
