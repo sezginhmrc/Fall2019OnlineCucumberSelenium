@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
         // every scenarios steps must have implmenetation
         // it basically check if each steps has code implemenatation
         strict = false,
-         tags = "@View_Calendar_Events",
+         tags = "@CreateCalendarEvent",
         // here we specify the scenario that we want to run
         // or -> execute both scenarios
         plugin = {

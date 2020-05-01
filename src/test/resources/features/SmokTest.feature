@@ -1,5 +1,5 @@
 @Smoke_Test
-Feature: Login tests with Scenario Outline
+Feature: Modules Test with Scenario Outline
 
 
 

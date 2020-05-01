@@ -1,7 +1,8 @@
+@CreateCalendarEvent
 Feature: Crete calendar event
   As user , I want to be able to create calendar events.
 
-  @Create_Calendar_Event
+
   Scenario: Create calendar event as sales manager
     Given user is on the login page
     When user logs in as a sales manager
@@ -14,7 +15,7 @@ Feature: Crete calendar event
     And user verifies that description is "On this meeting we discuss what went well, what went wrong and what can be improved"
     And user verifies that title is "Sprint Retrospective"
 
-    @Create_Calendar_Event_2
+
   Scenario: Create calendar event as sales manager with data table
     Given user is on the login page
     When user logs in as a sales manager
