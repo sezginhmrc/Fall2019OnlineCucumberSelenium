@@ -102,7 +102,7 @@
                             <forkCount>2C</forkCount>
 
                             <includes>
-                                <include>**/*CucumberRunner.java</include>
+                                <include>**/*Runner.java</include>
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>

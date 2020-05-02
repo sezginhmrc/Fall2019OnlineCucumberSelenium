@@ -112,11 +112,11 @@ public class CalenderEventsPage extends AbstractPageBase {
     // to click on CalendarEvent
     public void clickToCreateCalendarEvent() {
         BrowserUtilities.waitForPageToLoad(20);
-        BrowserUtilities.wait(5);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[title='Create Calendar event']")));
+     //   wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[title='Create Calendar event']"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(createCalendarEvent)).click();
         BrowserUtilities.waitForPageToLoad(20);
         BrowserUtilities.wait(5);
+        waitForLoaderMask();
     }
 
     public String getOwnerName(){

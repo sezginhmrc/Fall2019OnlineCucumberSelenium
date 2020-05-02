@@ -34,6 +34,7 @@ public class VehiclesPage extends AbstractPageBase {
 
     public void setLicencePlateInput(String licencePlate){
         BrowserUtilities.waitForPageToLoad(20);
+        BrowserUtilities.wait(5);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[name='custom_entity_type[LicensePlate]']")));
         wait.until(ExpectedConditions.visibilityOf(licencePlateInput));
         licencePlateInput.sendKeys(licencePlate);
@@ -61,6 +62,7 @@ public class VehiclesPage extends AbstractPageBase {
     public void clickToCreateCar(){
        BrowserUtilities.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(createCar)).click();
+        BrowserUtilities.wait(5);
         waitForLoaderMask();
         // test should call click and handle
     }

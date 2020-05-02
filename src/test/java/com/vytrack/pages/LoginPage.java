@@ -57,6 +57,7 @@ public class LoginPage extends AbstractPageBase {
 
     // login gor specific user(driver or store manager or sales manager)
     public void login(String usernameValue, String passwordValue) {
+        BrowserUtilities.waitForPageToLoad(10);
         username.sendKeys(usernameValue);
         password.sendKeys(passwordValue, Keys.ENTER);
         BrowserUtilities.waitForPageToLoad(10);

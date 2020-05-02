@@ -24,7 +24,7 @@ public abstract class AbstractPageBase {
     protected WebDriver driver = Driver.getDriver();
     // more reusable code
     // every page will get driver like below
-    protected WebDriverWait wait = new WebDriverWait(driver,15);
+    protected WebDriverWait wait = new WebDriverWait(driver,20);
     // every page class implement this wait
 
     @FindBy(css = "#user-menu > a")
@@ -87,8 +87,10 @@ public abstract class AbstractPageBase {
 
 
         // increase this wait tim here if still failing
-        BrowserUtilities.wait(3);
-        BrowserUtilities.waitForPageToLoad(15);
+        waitForLoaderMask();
+        BrowserUtilities.wait(5);
+        BrowserUtilities.waitForPageToLoad(20);
+
        // wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[class*='loader-mask']")));
     }
 
