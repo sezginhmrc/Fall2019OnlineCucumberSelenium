@@ -11,7 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 
-// POM is design where we create page classes and how we find them we can store them as element as anthyihng else
+// POM is desgn patter  where we create page classes for every page on appplicaiton thus we store webelements and locators in page classes
+// basically ech web applicaiton page has a class in my framework.
 // PageFactory is to find elements seperatly than test cases
 //Class become smaller, easier to understand. well organized more maintain
 
@@ -49,7 +50,6 @@ public class CalenderEventsPage extends AbstractPageBase {
 
     @FindBy(id="tinymce")
     private WebElement descriptionTextArea;
-
 
 
  //   @FindBy(css = "[class='control-label html-property'] > p")

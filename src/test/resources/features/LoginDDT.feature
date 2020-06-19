@@ -10,6 +10,7 @@ Feature: Login tests with Scenario Outline
     Then user verifies that page title is "<title>"
     # "" means parameter to pass into step definitions
     # <> means parameters gets value from examples table
+
     Examples:
       | user_type     | tab        | module          | title                                                              |
       | driver        | Fleet      | Vehicles        | Car - Entities - System - Car - Entities - System                  |

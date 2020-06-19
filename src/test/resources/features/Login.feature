@@ -1,5 +1,4 @@
 @Login
-
 Feature: Login
   As user, I want to be able to login with username and password
 #  Features File in Gherkin Language(Simple language)
@@ -41,11 +40,11 @@ Feature: Login
     Then user name should be "<name>"
     Examples:
       | username        | password    | name             |
-      | user187         | UserUser123 | Jerel Vandervort |
-      | user200         | UserUser123 | Lonzo Leuschke   |
-      | storemanager52  | UserUser123 | Roma Medhurst    |
-      | storemanager66  | UserUser123 | Carlos Ernser    |
-      | salesmanager125 | UserUser123 | Cleveland Heller |
-      | salesmanager140 | UserUser123 | Jameson Paucek   |
+      | user187         | UserUser12 | Jerel Vandervor |
+      | user200         | UserUser12 | Lonzo Leuschke   |
+      | storemanager52  | UserUser12 | Roma Medhurst    |
+      | storemanager66  | UserUser12 | Carlos Ernser    |
+      | salesmanager125 | UserUser12 | Cleveland Heller |
+      | salesmanager140 | UserUser12 | Jameson Paucek   |
 
     # we have 6 test cases here all steps are identical only different is credentials and name

@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
         dryRun = false,
         strict = false,
         tags = "not @Smoke_Test",
+        // it regression runner it included all tests scenarios expect smoke test
         plugin = {
                 "html:target/default-report-for-regression",
                 "json:target/cucumber_regression.json",

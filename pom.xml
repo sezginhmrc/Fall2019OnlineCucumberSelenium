@@ -7,8 +7,6 @@
     <groupId>com.vytrack</groupId>
     <artifactId>Fall2019OnlineCucumberSelenium</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
     <!-- all of above are auto-generated  We configure our pom.xml file after this line  -->
 
 
@@ -23,12 +21,18 @@
     <profiles>
 
 
-        <!-- to compile source code of project  -->
+
+        <!-- SMOKE ID PROFILE
+         We will execute this id in jenkins and it will run according your attributes here
+         it should run only smoke test runner which we specified here
+                                -->
+
         <profile>
             <id>Smoke</id>
             <build>
                 <plugins>
                     <plugin>
+                        <!-- to compile source code of project  -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.8.1</version>
@@ -38,28 +42,21 @@
                         </configuration>
                     </plugin>
 
-
-
                     <plugin>
-                        <!-- this plugin used to run project tests which allows us to configure xml suites   -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M4</version>
 
-                        <!--  here we specify tests attributes (parallel, threadCount, etc)
-                       so when we execute to run project  it will be run according this attributes
-                               -->
                         <configuration>
                             <parallel>methods</parallel> <!--  methods, classes   -->
-                            <useUnlimitedThreads>true</useUnlimitedThreads>  <!-- to be able to allow multiple threads in run    -->
+                            <useUnlimitedThreads>true</useUnlimitedThreads>
 
                             <threadCount>2</threadCount>
                             <perCoreThreadCount>false</perCoreThreadCount>
                             <forkCount>2C</forkCount>
 
-                            <!-- list all runner class here-->
                             <includes>
-                                <include>**/*SmokeTestRunner.java</include>
+                                <include>**/SmokeTestRunner.java</include>
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
@@ -71,6 +68,10 @@
         </profile>
 
 
+   <!-- REGRESSION ID PROFILE
+
+    We specfied
+                        -->
 
         <profile>
             <id>Regression</id>
@@ -87,24 +88,32 @@
                     </plugin>
 
                     <plugin>
-                        <!-- this plugin used to run project tests which allows us to configure xml suites   -->
+
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M4</version>
 
 
                         <configuration>
+                            <!-- for parallel running Cucumber-->
                             <parallel>methods</parallel> <!--  methods, classes   -->
-                            <useUnlimitedThreads>true</useUnlimitedThreads>  <!-- to be able to allow multiple threads in run    -->
+                            <useUnlimitedThreads>true</useUnlimitedThreads>
 
                             <threadCount>2</threadCount>
                             <perCoreThreadCount>false</perCoreThreadCount>
                             <forkCount>2C</forkCount>
 
+                            <!-- for  run class or classes-->
                             <includes>
-                                <include>**/*Runner.java</include>
+                                <include>**/RegressionRunner.java</include>
+                                <!-- since it is regression profile it included regressin runner -->
                             </includes>
+                            <excludes>
+                                <!--  not failedrunner included.      -->
+                                <exclude>**/FailedRunner.java></exclude>
+                            </excludes>
                             <testFailureIgnore>true</testFailureIgnore>
+
                         </configuration>
 
                     </plugin>
@@ -112,7 +121,6 @@
                 </plugins>
             </build>
         </profile>
-
 
 
     </profiles>
@@ -123,7 +131,7 @@
 
     <build>
 
-        <!-- this plugin setting up java version build the project   -->
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -135,8 +143,7 @@
                 </configuration>
             </plugin>
 
-
-
+        <!--  this plugin will be executed whne run with mvn test       -->
             <plugin>
                 <!-- this plugin used to run project tests which allows us to configure xml suites   -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -146,20 +153,18 @@
               <!-- this plugin allows us to run in parallel  -->
                 <configuration>
                 <!--  here we specify tests attributes (parallel, threadCount, etc)
-                        so when we execute to run project  it will be run according this attributes
+                        so when we execute project  it will be run according this attributes
                                 -->
-                    <parallel>methods</parallel> <!--  methods, classes   -->
+                    <!-- for parallel running Cucumber-->
+                    <parallel>classes</parallel> <!--  methods, classes   -->
                     <useUnlimitedThreads>true</useUnlimitedThreads>  <!-- to be able to allow multiple threads in run    -->
-
 
                     <threadCount>2</threadCount>
                      <perCoreThreadCount>false</perCoreThreadCount>
                     <forkCount>2C</forkCount>
-
                     <includes>
-                        <!-- list all runner class here
-                        * means matching which starts with Cucumber -->
-                        <include>**/*CucumberRunner.java</include> <!-- run all feature files in this runner class have   -->
+                      <!--  <include>**/SmokeTestRunner.java</include>-->
+                        <include>**/CucumberRunner.java</include> <!-- run all feature files in this runner class have   -->
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
@@ -171,18 +176,21 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>4.5.0</version>
+                <version>5.0.0</version>
                 <executions>
                     <execution>
                         <id>execution</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
+
                         </goals>
                         <configuration>
+
                             <projectName>Cucumber HTML Reports</projectName>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <inputDirectory>${project.build.directory}</inputDirectory>
+
                             <jsonFiles>
                                 <param>**/cucumber*.json</param>
                             </jsonFiles>
@@ -222,6 +230,8 @@
             <version>3.8.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
 
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -246,8 +256,13 @@
             <version>5.6.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
 
-
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>5.6.0</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>

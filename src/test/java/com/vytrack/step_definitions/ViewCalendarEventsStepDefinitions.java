@@ -16,7 +16,7 @@ public class ViewCalendarEventsStepDefinitions {
     public void view_Per_Page_menu_should_have_following_options( List<String> dataTable) {
 
         Assert.assertEquals(dataTable,calenderEventsPage.getViewPerPageOptions());
-        //  expcected -> dataTable 10,25,50,100 (we specified them in feature
-        // actual    -> we wrote the code and got the per page options from web page.
+        //  expected -> dataTable 10,25,50,100 (we specified them in feature
+        //  actual    -> we wrote the code and got the per page options from web page.
     }
 }

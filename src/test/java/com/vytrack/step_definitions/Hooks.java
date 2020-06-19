@@ -17,7 +17,10 @@ public class Hooks {
 // cucumber also has many default reports.
 
 
-// this Before hook(Cucumber) will be executed before every scenario
+
+
+// it is cucumber hooks
+// this Before hook(Cucumber) will be run before every scenario
 // in other hands @BeforeMethod(Testng) will be executed for every methods
     @Before(order = 2)
     public void setup() {
@@ -28,6 +31,7 @@ public class Hooks {
     }
 
     // These are only for specific scenarios(for driver)
+    // order one this one will be run first
     @Before(value = "@driver", order = 1)
     public void specialSetup() {
         System.out.println("Setup for driver");
